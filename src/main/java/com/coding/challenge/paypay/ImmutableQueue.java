@@ -3,8 +3,8 @@ package com.coding.challenge.paypay;
 import java.util.Iterator;
 
 /**
- * Concrete Queue Implementation with
- * constant O(1) Runtime for enqueue, dequeue and size.
+ * A Concrete Queue Implementation with the
+ * constant O(1) runtime for enqueue, dequeue, head and size.
  * 
  * @author gopi_karmakar
  *
@@ -16,10 +16,8 @@ public class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 	private Node head, rear;
 	
 	/**
-	 * 
-	 * 
-	 * @author gopi_karmakar
-	 *
+	 * Each node will carry it's own item
+	 * and a link to the next item to iterate through.	  	
 	 */
 	private class Node {
 		T item;
@@ -29,6 +27,9 @@ public class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 		}
 	}
 	
+	/**
+	 * Enqueue every new item to it's rear.
+	 */
 	@Override
 	public Queue<T> enQueue(T t) {
 		size += 1;
@@ -42,6 +43,9 @@ public class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 		return this;
 	}
 
+	/**
+	 * Dequeue item from it's head.
+	 */
 	@Override
 	public Queue<T> deQueue() {
 		Node node = head;
@@ -53,6 +57,9 @@ public class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 		return this;
 	}
 
+	/**
+	 * Returns the head item only will not dequeue.
+	 */
 	@Override
 	public T head() {
 		if(isEmpty())
@@ -60,15 +67,26 @@ public class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 		return head.item;
 	}
 
+	/**
+	 * Returns true if there's no head to return.
+	 */
 	@Override
 	public boolean isEmpty() {
 		return (head == null);
 	}
 	
+	/**
+	 * Return the size of the queue.
+	 * 
+	 * @return
+	 */
 	public int size() {
 		return size;
 	}
 
+	/**
+	 * Returns an iterator to iterate through the queue.
+	 */
 	@Override
 	public Iterator<T> iterator() {
 		Iterator<T> itr = new Iterator<T>() {
