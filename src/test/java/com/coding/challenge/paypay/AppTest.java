@@ -1,4 +1,6 @@
-package com.coding.test.paypay;
+package com.coding.challenge.paypay;
+
+import com.coding.challenge.paypay.App;
 
 import junit.framework.Test;
 import junit.framework.TestCase;

@@ -1,4 +1,4 @@
-package com.coding.test.paypay;
+package com.coding.challenge.paypay;
 
 import java.util.Iterator;
 
