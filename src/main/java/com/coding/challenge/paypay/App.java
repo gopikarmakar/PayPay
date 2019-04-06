@@ -8,7 +8,9 @@ import java.util.Iterator;
  */
 public class App {
     
-	public static void main( String...items ) {}
+	public static void main( String...items ) {
+		testAllEnqueueDequeue(items);
+	}
 	
 	public static String testEmptyQueue(String...items) {
 		String msg = "";
