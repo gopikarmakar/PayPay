@@ -84,7 +84,7 @@ public class AppTest extends TestCase {
         assertEquals(expectedOutput, App.testAllEnqueueDequeue(input));
     }   
 	
-	public void testEnqueDeque() {
+	public void testRandomEnqueDequeue() {
 		
 		String[] input = {
 				"One",
