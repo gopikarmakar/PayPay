@@ -9,13 +9,26 @@ import java.util.Iterator;
 public class App {
     
 	public static void main( String...items ) {}
+	
+	public static String testEmptyQueue(String...items) {
+		String msg = "";
+		ImmutableQueue<String> queue = new ImmutableQueue<String>();
+		try {
+			enqueueAll(queue, items);
+			dequeueAll(queue);			
+			dequeue(queue);
+		} catch (NullPointerException npe) {
+			msg = npe.getMessage();
+			System.out.println("Error Message = " + msg);
+		}
+		return msg;
+	}
     
     public static String testHead(int d, String...items) {
     	ImmutableQueue<String> queue = new ImmutableQueue<String>();
     	for(int i = 0; i < d; i++) {
 			enqueue(queue, items[i]);
-		}
-    	
+		}    	
     	for(int i = 0; i < d; i++) {
 			queue.deQueue();
 		}
@@ -71,20 +84,6 @@ public class App {
 		enqueueAll(queue, items);
 		System.out.println("Size = " + queue.size());
 		return queue.size();
-	}
-	
-	public static String testEmptyQueueDequeue(String...items) {
-		String msg = "";
-		ImmutableQueue<String> queue = new ImmutableQueue<String>();
-		try {
-			enqueueAll(queue, items);
-			dequeueAll(queue);			
-			dequeue(queue);
-		} catch (NullPointerException npe) {
-			msg = npe.getMessage();
-			System.out.println("Error Message = " + msg);
-		}
-		return msg;
 	}
 	
 	private static void enqueue(ImmutableQueue<String> queue, String item) {

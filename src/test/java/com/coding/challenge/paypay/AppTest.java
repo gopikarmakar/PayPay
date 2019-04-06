@@ -8,7 +8,7 @@ import junit.framework.TestSuite;
 
 /**
  * Rigorous Testing
- * Unit test for simple App.
+ * Unit test cases for ImmutableQueue.
  */
 public class AppTest extends TestCase {
 	
@@ -30,6 +30,22 @@ public class AppTest extends TestCase {
     public static Test suite() {
         return new TestSuite( AppTest.class );
     }
+    
+    public void testEmptyQueue() {		
+		
+		String[] input = {
+				"One",
+				"Two", 
+				"Three",
+				"Four",
+				"Five"				
+		};
+		
+		String expectedOutput = "Queue Is Empty";
+		
+		System.out.println("### Testing Empty Queue Dequeue ###");              
+        assertEquals(expectedOutput, App.testEmptyQueue(input));
+	}
     
     public void testHead() {
     	
@@ -124,21 +140,5 @@ public class AppTest extends TestCase {
 		
 		System.out.println("### Testing Size ###");              
         assertEquals(expectedOutput, App.testSize(d, input));
-	}
-	
-	public void testEmptyDequeue() {		
-		
-		String[] input = {
-				"One",
-				"Two", 
-				"Three",
-				"Four",
-				"Five"				
-		};
-		
-		String expectedOutput = "Queue Is Empty";
-		
-		System.out.println("### Testing Empty Queue Dequeue ###");              
-        assertEquals(expectedOutput, App.testEmptyQueueDequeue(input));
-	}
+	}	
 }

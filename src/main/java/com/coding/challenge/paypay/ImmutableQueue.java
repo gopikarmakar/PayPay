@@ -3,7 +3,7 @@ package com.coding.challenge.paypay;
 import java.util.Iterator;
 
 /**
- * A Concrete Queue Implementation with the
+ * A Concrete Queue(FIFO) Implementation with the
  * constant O(1) runtime for enqueue, dequeue, head and size.
  * 
  * @author gopi_karmakar
