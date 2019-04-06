@@ -10,7 +10,7 @@ import java.util.Iterator;
  *
  * @param <T>
  */
-public class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
+public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 
 	private int size = 0;
 	private Node head, rear;
