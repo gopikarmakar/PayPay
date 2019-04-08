@@ -1,10 +1,12 @@
 package com.coding.challenge.paypay;
 
 import java.util.Iterator;
+import java.util.Collection;
 
 /**
  * A Concrete Queue(FIFO) Implementation with the
- * constant O(1) runtime for enqueue, dequeue, head and size.
+ * constant O(1) complexity  runtime for 
+ * enqueue, dequeue, head and size.
  * 
  * @author gopi_karmakar
  *
@@ -12,8 +14,33 @@ import java.util.Iterator;
  */
 public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 
+	/**
+	 * Track size;
+	 */
 	private int size = 0;
+	/**
+	 * Track head and rear.
+	 */
 	private Node head, rear;
+	
+	/**
+	 * Default constructor
+	 */
+	public ImmutableQueue() {}
+	
+	/*
+	 * Creates an empty queue if the given value is null else 
+	 * Creates a queue from given collection of values. 
+	 * 
+	 */
+	public ImmutableQueue(Collection<T> v) {
+		this();
+		if(v != null) {		
+			for(T t : v) {
+				enQueue(t);
+			}
+		}
+	}
 	
 	/**
 	 * Each node will carry it's own item
@@ -32,6 +59,9 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 	 */
 	@Override
 	public Queue<T> enQueue(T t) {
+		if(t == null) {
+			throw new IllegalArgumentException("Value Can't Be Null");
+		}
 		size += 1;
 		Node node = rear;
 		rear = new Node(t);
@@ -112,5 +142,4 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 		};
 		return itr;
 	}
-
 }

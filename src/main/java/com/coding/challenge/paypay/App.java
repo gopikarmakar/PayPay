@@ -1,15 +1,35 @@
 package com.coding.challenge.paypay;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 
 /**
- * Main Class
- *
+ * Main Class contains all test cases implementation.
  */
 public class App {
     
 	public static void main( String...items ) {
-		testAllEnqueueDequeue(items);
+		ArrayList<String> list = new ArrayList<>();
+		for(String s : items) {
+			list.add(s);
+		}
+		testQCreationFromGivenValues(list);
+	}
+	
+	public static String testQCreationFromGivenValues(Collection<String> input) {		
+		return testIteration(input);
+	}
+	
+	public static String testEnqueueNullValue() {
+		String msg = "";
+		ImmutableQueue<String> queue = new ImmutableQueue<String>();
+		try {
+			queue.enQueue(null);
+		} catch (IllegalArgumentException e) {
+			msg = e.getMessage();
+		}
+		return msg;
 	}
 	
 	public static String testEmptyQueue(String...items) {
@@ -64,19 +84,6 @@ public class App {
 		return result;
 	}
 	
-	public static String testIteration(String...items) {
-		String result = "";		
-		ImmutableQueue<String> queue = new ImmutableQueue<String>();
-		enqueueAll(queue, items);
-		Iterator<String> itr = queue.iterator();
-		while(itr.hasNext()) {
-			String item = itr.next();
-			System.out.println(item);
-			result += item;
-		}
-		return result;
-	}
-	
 	public static int testSize(int d, String...items) {
 		ImmutableQueue<String> queue = new ImmutableQueue<String>();
 		enqueueAll(queue, items);
@@ -86,6 +93,18 @@ public class App {
 		enqueueAll(queue, items);
 		System.out.println("Size = " + queue.size());
 		return queue.size();
+	}
+	
+	private static String testIteration(Collection<String> input) {
+		String result = "";				
+		ImmutableQueue<String> queue = new ImmutableQueue<>(input);			
+		Iterator<String> itr = queue.iterator();
+		while(itr.hasNext()) {
+			String item = itr.next();
+			System.out.println(item);
+			result += item;
+		}
+		return result;
 	}
 	
 	private static void enqueue(ImmutableQueue<String> queue, String item) {

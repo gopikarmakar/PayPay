@@ -2,13 +2,13 @@ package com.coding.challenge.paypay;
 
 import com.coding.challenge.paypay.App;
 
+import java.util.ArrayList;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
 /**
- * Rigorous Testing
- * Unit test cases for ImmutableQueue.
+ * Test class with all unit test cases for rigorous testing
  */
 public class AppTest extends TestCase {
 	
@@ -16,11 +16,10 @@ public class AppTest extends TestCase {
 	
     /**
      * Create the test case
-     *
      * @param testName name of the test case
      */
     public AppTest( String testName ) {
-        super( testName );
+        super( testName ); 
         main = new App();
     }
 
@@ -28,7 +27,39 @@ public class AppTest extends TestCase {
      * @return the suite of tests being tested
      */
     public static Test suite() {
-        return new TestSuite( AppTest.class );
+        return new TestSuite( AppTest.class );       
+    }
+    
+    public void testQCreationFromGivenValues() {
+    	
+    	String[] input = {
+				"One",
+				"Two", 
+				"Three",
+				"Four",
+				"Five"
+		};
+    	
+    	ArrayList<String> list = new ArrayList<>();
+		for(String s : input) {
+			list.add(s);
+		}
+		
+		String expectedOutput = "One" +
+								"Two" +
+								"Three" +
+								"Four" +
+								"Five";
+		
+		System.out.println("### Testing Queue Creation & Iteration From Given Values ###");        
+        assertEquals(expectedOutput, App.testQCreationFromGivenValues(list));
+	}
+    
+    public void testEnqueueNullValue() {
+    	
+    	String expectedOutput = "Value Can't Be Null";
+    	System.out.println("### Testing Enqueue a Null Value ###");        
+        assertEquals(expectedOutput, App.testEnqueueNullValue());
     }
     
     public void testEmptyQueue() {		
@@ -105,26 +136,6 @@ public class AppTest extends TestCase {
 		System.out.println("### Testing Random Enque Deque ###");               
         assertEquals(expectedOutput, App.testRandomEnqueDequeue(input));
     }
-	
-	public void testIteration() {
-		
-		String[] input = {
-				"One",
-				"Two", 
-				"Three",
-				"Four",
-				"Five"				
-		};
-		
-		String expectedOutput = "One" +
-								"Two" +
-								"Three" +
-								"Four" +
-								"Five";	
-		
-		System.out.println("### Testing Iteration ###");        
-        assertEquals(expectedOutput, App.testIteration(input));
-	}
 	
 	public void testSize() {
 		
