@@ -21,14 +21,9 @@ public class App {
 		return testIteration(input);
 	}
 	
-	public static String testEnqueueNullValue() {
-		String msg = "";
-		ImmutableQueue<String> queue = new ImmutableQueue<String>();
-		try {
-			queue.enQueue(null);
-		} catch (IllegalArgumentException e) {
-			msg = e.getMessage();
-		}
+	public static String testEnqueueNullValue(Collection<String> input) {
+		String msg = testIteration(input);
+		System.out.println("Error Message = " + msg);
 		return msg;
 	}
 	
@@ -37,7 +32,7 @@ public class App {
 		ImmutableQueue<String> queue = new ImmutableQueue<String>();
 		try {
 			enqueueAll(queue, items);
-			dequeueAll(queue);			
+			dequeueAll(queue);
 			dequeue(queue);
 		} catch (NullPointerException npe) {
 			msg = npe.getMessage();
@@ -96,8 +91,14 @@ public class App {
 	}
 	
 	private static String testIteration(Collection<String> input) {
-		String result = "";				
-		ImmutableQueue<String> queue = new ImmutableQueue<>(input);			
+		String result = "";
+		ImmutableQueue<String> queue = null;
+		try {		
+			queue = new ImmutableQueue<>(input);
+		} catch (IllegalArgumentException e) {
+			return e.getMessage();
+		}
+					
 		Iterator<String> itr = queue.iterator();
 		while(itr.hasNext()) {
 			String item = itr.next();

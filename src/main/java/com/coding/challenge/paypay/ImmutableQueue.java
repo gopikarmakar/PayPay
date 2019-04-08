@@ -4,8 +4,9 @@ import java.util.Iterator;
 import java.util.Collection;
 
 /**
- * A Concrete Queue(FIFO) Implementation with the
- * constant O(1) complexity  runtime for 
+ * A concrete immutable, non-null valued and linked list  
+ * based queue(FIFO) Implementation with the
+ * constant O(1) runtime complexity for 
  * enqueue, dequeue, head and size.
  * 
  * @author gopi_karmakar
@@ -13,13 +14,16 @@ import java.util.Collection;
  * @param <T>
  */
 public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
+	
+	private final String emptyQueueMsg = "Queue Is Empty";	
+	private final String illegalArgsMsg = "Value Can't Be Null"; 	
 
 	/**
-	 * Track size;
+	 * Tracks size;
 	 */
 	private int size = 0;
 	/**
-	 * Track head and rear.
+	 * Tracks head and rear.
 	 */
 	private Node head, rear;
 	
@@ -33,11 +37,15 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 	 * Creates a queue from given collection of values. 
 	 * 
 	 */
-	public ImmutableQueue(Collection<T> v) {
+	public ImmutableQueue(Collection<T> v) throws IllegalArgumentException {
 		this();
-		if(v != null) {		
+		if(v != null) {
 			for(T t : v) {
-				enQueue(t);
+				try {				
+					enQueue(t);
+				} catch (IllegalArgumentException e) {
+					throw new IllegalArgumentException(illegalArgsMsg);
+				}				
 			}
 		}
 	}
@@ -60,7 +68,7 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 	@Override
 	public Queue<T> enQueue(T t) {
 		if(t == null) {
-			throw new IllegalArgumentException("Value Can't Be Null");
+			throw new IllegalArgumentException(illegalArgsMsg);
 		}
 		size += 1;
 		Node node = rear;
@@ -80,7 +88,7 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 	public Queue<T> deQueue() {
 		Node node = head;
 		if(node == null)
-			throw new NullPointerException("Queue Is Empty");
+			throw new NullPointerException(emptyQueueMsg);
 		size -= 1;
 		head = head.next;		
 		node = null; //Making available for garbage collection.
@@ -93,7 +101,7 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 	@Override
 	public T head() {
 		if(isEmpty())
-			throw new NullPointerException("Queue Is Empty");		
+			throw new NullPointerException(emptyQueueMsg);		
 		return head.item;
 	}
 

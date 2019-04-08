@@ -57,9 +57,21 @@ public class AppTest extends TestCase {
     
     public void testEnqueueNullValue() {
     	
+    	String[] input = {
+				"One",
+				"Two", 
+				"Three"
+		};
+    	
+    	ArrayList<String> list = new ArrayList<>();    	
+		for(String s : input) {
+			list.add(s);
+		}
+		list.add(null);
+		
     	String expectedOutput = "Value Can't Be Null";
     	System.out.println("### Testing Enqueue a Null Value ###");        
-        assertEquals(expectedOutput, App.testEnqueueNullValue());
+        assertEquals(expectedOutput, App.testEnqueueNullValue(list));
     }
     
     public void testEmptyQueue() {		
