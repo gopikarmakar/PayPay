@@ -25,7 +25,7 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 	/**
 	 * Tracks head and rear.
 	 */
-	private Node head, rear;
+	private Node head, tail;
 	
 	/**
 	 * Each node will carry it's own item
@@ -71,13 +71,13 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 			throw new IllegalArgumentException(illegalArgsMsg);
 		}
 		size += 1;
-		Node node = rear;
-		rear = new Node(t);
+		Node node = tail;
+		tail = new Node(t);
 		if(head == null) {
-			head = rear;
+			head = tail;
 			return this;
 		}		
-		node.next = rear;
+		node.next = tail;
 		return this;
 	}
 
