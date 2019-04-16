@@ -28,6 +28,18 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 	private Node head, rear;
 	
 	/**
+	 * Each node will carry it's own item
+	 * and a link to the next item to iterate through.	  	
+	 */
+	private class Node {
+		T item;
+		Node next = null;
+		Node(T item) {
+			this.item = item;
+		}
+	}
+	
+	/**
 	 * Default constructor
 	 */
 	public ImmutableQueue() {}
@@ -47,18 +59,6 @@ public final class ImmutableQueue<T> implements Queue<T>, Iterable<T> {
 					throw new IllegalArgumentException(illegalArgsMsg);
 				}				
 			}
-		}
-	}
-	
-	/**
-	 * Each node will carry it's own item
-	 * and a link to the next item to iterate through.	  	
-	 */
-	private class Node {
-		T item;
-		Node next = null;
-		Node(T item) {
-			this.item = item;
 		}
 	}
 	
